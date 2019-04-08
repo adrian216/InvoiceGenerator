@@ -1,0 +1,15 @@
+.menu-right {
+    float:right;
+    text-align: right;
+    font-size: 40px;
+    font-weight: bolder;
+}
+.menu-right li {
+    float:left;
+}
+.menu-right a{
+    float: right;
+}
+h4 {
+    display: inline;
+}

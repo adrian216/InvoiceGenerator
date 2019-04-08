@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base :: head">
+</head>
+<body>
+<header th:replace="base :: header"></header>
+
+<div class="container py-4">
+    <div class="card bg-secondary text-white">
+        <div class="card-header" th:text="#{text.add.product}"></div>
+        <div class="card-body">
+            <div th:object="${product}" th:remove="tag">
+                <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
+                    role="alert">
+                    <li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+                </ul>
+            </div>
+
+            <form th:action="@{/product/save}" th:object="${product}" method="post" enctype="multipart/form-data">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Nazwa</label>
+                    <div class="col-sm-6">
+                        <input type="text" th:field="*{name}" class="form-control"
+                               th:errorclass="'form-control alert-danger'"/>
+                        <small
+                                th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                                class="form-text text-danger"></small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">SKU</label>
+                    <div class="col-sm-6">
+                        <input type="text" th:field="*{sku}" class="form-control"
+                               th:errorclass="'form-control alert-danger'"/>
+                        <small
+                                th:if="${#fields.hasErrors('sku')}" th:errors="*{sku}"
+                                class="form-text text-danger"></small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Szczegóły</label>
+                    <div class="col-sm-6">
+                        <input type="text" th:field="*{details}" class="form-control"
+                               th:errorclass="'form-control alert-danger'"/>
+                        <small
+                                th:if="${#fields.hasErrors('details')}" th:errors="*{details}"
+                                class="form-text text-danger"></small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Cena brutto</label>
+                    <div class="col-sm-6">
+                        <input type="text" th:field="*{price}" class="form-control"
+                               th:errorclass="'form-control alert-danger'"/>
+                        <small
+                                th:if="${#fields.hasErrors('price')}" th:errors="*{price}"
+                                class="form-text text-danger"></small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Vat</label>
+                    <div class="col-sm-6">
+                        <input type="text" th:field="*{vat}" class="form-control"
+                               th:errorclass="'form-control alert-danger'"/>
+                        <small
+                                th:if="${#fields.hasErrors('vat')}" th:errors="*{vat}"
+                                class="form-text text-danger" th:value="23"></small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <input type="submit" value="Dodaj produkt"
+                               class="btn btn-success"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</div>
+
+<footer th:replace="base :: footer"></footer>
+</body>
+</html>

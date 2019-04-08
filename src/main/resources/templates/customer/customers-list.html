@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="base :: head">
+</head>
+<body>
+<header th:replace="base :: header"></header>
+
+
+<div class="container py-4">
+    <div class="card bg-light">
+        <div class="card-header" th:text="#{text.layout.customers}"></div>
+        <div class="card-body">
+            <div class="card-title">
+                <a th:href="@{/form}" class="btn btn-primary btn-xs my-2">Dodaj klienta </a>
+            </div>
+            <div>
+                <form th:action="@{/search}" method="get" enctype="multipart/form-data" th:align="right">
+                    <h5 class="card-title">
+                        <input th:type="text" name="search" th:align="right" th:placeholder="Szukaj"/>
+                        <button th:type="submit" name="submit" class="btn btn-info btn-xs"><i class="material-icons">search</i>
+                        </button>
+                    </h5>
+                </form>
+            </div>
+
+            <table class="table table-bordered table-striped">
+                <thead class="thead-inverse">
+                <tr>
+                    <th>Id</th>
+                    <th th:text="#{text.client.name}"></th>
+                    <th th:text="#{text.client.address}"></th>
+                    <th th:text="#{text.client.createdAt}"></th>
+                    <th th:text="#{text.list.invoice}">Faktury</th>
+                    <th th:text="#{text.list.edit}">Edytuj</th>
+                    <th th:text="#{text.list.delete}">Usuń</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="customer : ${customerList}">
+                    <td><a th:href="@{/customer/} + ${customer.id}" th:text="${customer.id}"
+                           class="btn btn-primary btn-xs"></a></td>
+                    <td th:text="${customer.name}"></td>
+                    <td th:text="${customer.address}"></td>
+                    <td th:text="${customer.createdAt}"></td>
+                    <td><a th:href="@{/invoice/form/} + ${customer.id}"
+                           class="btn btn-success btn-xs"><i class="material-icons">message</i></a></td>
+                    <td><a th:href="@{/updateForm(customerId=${customer.id})}"
+                           class="btn btn-primary btn-xs"> <i class="material-icons">edit</i></a></td>
+
+                    <td><a th:href="@{/delete(customerId=${customer.id})}"
+                           class="btn btn-danger btn-xs"
+                           onclick="return confirm('Na pewno chcesz usunąć klienta?')"> <i
+                            class="material-icons">delete_forever</i></a></td>
+                </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+</div>
+<div class="row" th:fragment="pagination">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <nav aria-label="Pagination">
+            <ul class="pagination justify-content-center">
+                <li class="page-item" th:each="pageNumber : ${pageNumbers}">
+                    <a class="page-link" th:href="@{|/customers/${pageNumber}|}" th:text=${pageNumber}>1</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+<footer th:replace="base :: footer"></footer>
+</body>
+</html>
+
+
+

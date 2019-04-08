@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="base :: head">
+</head>
+<body>
+<header th:replace="base :: header"></header>
+
+
+<div class="container py-4">
+    <div class="card bg-light">
+        <div class="card-header" th:text="#{text.layout.products}"></div>
+        <div class="card-body">
+            <div class="card-title">
+                <a th:href="@{/product/form}" class="btn btn-primary btn-xs my-2">Dodaj produkt</a>
+            </div>
+            <div>
+            </div>
+
+            <table class="table table-bordered table-striped">
+                <thead class="thead-inverse">
+                <tr>
+                    <th th:text="#{text.product.id}"></th>
+                    <th th:text="#{text.product.sku}"></th>
+                    <th th:text="#{text.product.name}"></th>
+                    <th th:text="#{text.product.details}"></th>
+                    <th th:text="#{text.product.vat}"></th>
+                    <th th:text="#{text.product.price}"></th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="product : ${productList}">
+                    <td th:text="${product.id}"></a></td>
+                    <td th:text="${product.sku}"></td>
+                    <td th:text="${product.name}"></td>
+                    <td th:text="${product.details}"></td>
+                    <td th:text="${product.vat}"></td>
+                    <td th:text="${product.price}"></td>
+                </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<footer th:replace="base :: footer"></footer>
+</body>
+</html>
+
+
+

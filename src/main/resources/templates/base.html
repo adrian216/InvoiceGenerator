@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <title th:text="${title}"></title>
+
+    <link href="../static/css/Layout.css" th:href="@{/css/Layout.css}" rel="stylesheet"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet"/>
+
+    <script type="application/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="application/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="application/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+<header th:fragment="menu">
+    <nav class="navbar navbar-expand-md navbar-light bg-white">
+        <a th:href="@{/customers/1}"><img src="/static/logoname2.jpg" th:src="@{/logoname2.jpg}"></a>
+        <div class="collapse navbar-collapse">
+
+                    <a class="nav-link text-dark" href="#" th:href="@{/customers/1}">
+                        <h4 th:text="#{text.layout.customers}"></h4></a>
+                    <a class="nav-link text-dark" href="#" th:href="@{/product/list}">
+                        <h4 th:text="#{text.layout.products}"></h4></a>
+
+        </div>
+    </nav>
+
+    <div class="alert alert-success" th:if="${success != null}"
+         th:text="${success}"></div>
+    <div class="alert alert-danger" th:if="${error != null}"
+         th:text="${error}"></div>
+    <div class="alert alert-warning" th:if="${warning != null}"
+         th:text="${warning}"></div>
+    <div class="alert alert-info" th:if="${info != null}"
+         th:text="${info}"></div>
+</header>
+
+<div class="container"></div>
+
+<footer th:fragment="footer" class="container">
+    <hr/>
+    Made by <strong>&copy; A.D.</strong> - 2019
+    </p>
+</footer>
+</body>
+</html>
